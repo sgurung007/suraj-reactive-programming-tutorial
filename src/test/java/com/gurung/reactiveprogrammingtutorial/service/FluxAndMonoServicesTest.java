@@ -150,4 +150,29 @@ class FluxAndMonoServicesTest {
                 .expectNext("Mango","Cauliflower")
                 .verifyComplete();
     }
+
+    @Test
+    void fruitsMerge(){
+        Flux<String> fruitsMerge = fluxAndMonoServices.fruitsMerge().log();
+        StepVerifier.create(fruitsMerge)
+                .expectNext("Apple","Orange","Mango","Pineapple")
+                .verifyComplete();
+    }
+
+    @Test
+    void fruitsMergeWith(){
+        Flux<String> fruitsMerge = fluxAndMonoServices.fruitsMergeWith().log();
+        StepVerifier.create(fruitsMerge)
+                .expectNext("Apple","Orange","Mango","Pineapple")
+                .verifyComplete();
+    }
+
+    @Test
+    void fruitsMergeWithSequential(){
+        Flux<String> fruitsMergeWithSequential = fluxAndMonoServices.fruitsMergeWithSequential();
+        StepVerifier.create(fruitsMergeWithSequential)
+                .expectNext("Apple","Mango","Orange","Pineapple")
+                .verifyComplete();
+    }
+
 }
